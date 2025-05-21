@@ -29,9 +29,22 @@
 
 This WhatsApp chatbot assistant allows you to create an intelligent conversational interface powered by large language models. Users can interact with your bot through WhatsApp messages, and the system will generate responses using state-of-the-art AI models from OpenRouter.
 
-<p align="center">
-  <img src="https://kroki.io/plantuml/svg/eNp1kk9PwzAMxb_KKSfQNDSOXBBiEoyNgSbEaWi3OGqaJfnD1lbo0-88b1qLQObkl_c8_-wrZqFRJLWgiY6NIcUTY1wm4XazXuEhyvhx4PnkMGnojGQUHLQDR0rqmD7rIMp4qlitSHn-gQdvvT0tp4fDYVbvq1k59dzZLG4Hnx52xhtYKJv1KgfT9JVPnVHSYOct6UwNGLakpMUOe-uMh96YA8qPi8MfAM4dkK-6dJDXAYURzILwGD1H1tSIQA-eB2P9BXZQ0sMjjyTHDvFMv-Hfwb2DUyj9o_gIBhHtgPw4YFkOGBkO1sJeOo78-mCVPc_f3Cj3xfS_9dSFo9bynO5IkqVomTWCsqBF9YkTqz7ldUIFB8qVvCQfvNcTlrI80Yn9W6O9rBuphEG8Tnt7IfNiDEoY8jDp8T-5UMxvqWnlJahLUuRK9HlucGLBiIv60h0TcqcY-fYLRY8Xbw" alt="Architecture Diagram" />
-</p>
+<div align="center">
+
+**WhatsApp Chatbot Architecture**
+
+| Service | Description | Communication |
+|---------|-------------|---------------|
+| 📱 **WhatsApp User** | End users sending and receiving messages | Connects to WhatsApp API |
+| 🌐 **API Gateway** | Routes requests to appropriate services | HTTP/REST |
+| 💬 **WhatsApp Service** | Handles WhatsApp API integration | Sends/receives messages |
+| 🧠 **LLM Service** | Natural language processing | Uses OpenRouter API |
+| 🗄️ **Redis** | Message passing between services | Pub/Sub, Cache |
+| 🤖 **OpenRouter** | LLM provider for AI responses | API integration |
+
+**Flow**: User → WhatsApp → API Gateway → WhatsApp Service ⟷ Redis ⟷ LLM Service → OpenRouter → Response returned through the same path
+
+</div>
 
 ## 🏗 Architecture
 
