@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # API Gateway Service
+  api-gateway:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    ports:
+      - "8080:8080"
+    env_file:
+      - env.example
+    environment:
+      - PORT=8080
+      - WHATSAPP_SERVICE_URL=http://whatsapp-service:8081
+      - LLM_SERVICE_URL=http://llm-service:8082
+      # Add your WhatsApp and OpenRouter credentials here
+      - WHATSAPP_TOKEN=your_whatsapp_token
+      - WHATSAPP_PHONE_ID=your_whatsapp_phone_id
+      - OPENROUTER_API_KEY=your_openrouter_api_key
+    depends_on:
+      - whatsapp-service
+      - llm-service
+    restart: unless-stopped
+    networks:
+      - chatbot-network
+
+  # WhatsApp Service
+  whatsapp-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.whatsapp
+    ports:
+      - "8081:8081"
+    env_file:
+      - env.example
+    environment:
+      - PORT=8081
+      - WHATSAPP_TOKEN=your_whatsapp_token
+      - WHATSAPP_PHONE_ID=your_whatsapp_phone_id
+      - WHATSAPP_API_URL=https://graph.facebook.com/v17.0
+      - REDIS_URL=redis:6379
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - chatbot-network
+
+  # LLM Service
+  llm-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.llm
+    ports:
+      - "8082:8082"
+    env_file:
+      - env.example
+    environment:
+      - PORT=8082
+      - OPENROUTER_API_KEY=your_openrouter_api_key
+      - OPENROUTER_MODEL=meta-llama/llama-3-70b-instruct
+    restart: unless-stopped
+    networks:
+      - chatbot-network
+
+  # Redis for message passing and caching
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - chatbot-network
+
+# Volumes
+volumes:
+  redis-data:
+
+# Networks
+networks:
+  chatbot-network:
+    driver: bridge 
