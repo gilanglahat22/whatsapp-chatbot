@@ -1,8 +1,39 @@
-# WhatsApp Chatbot Assistant
+# 🤖 WhatsApp Chatbot Assistant
 
-A modular, microservices-based WhatsApp chatbot assistant using Golang, OpenRouter for LLM integration, and LangChain as the framework.
+<p align="center">
+  <img src="https://img.shields.io/badge/Go-1.21-00ADD8?style=for-the-badge&logo=go" alt="Go 1.21" />
+  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker" alt="Docker" />
+  <img src="https://img.shields.io/badge/OpenRouter-AI_Integration-007ACC?style=for-the-badge" alt="OpenRouter" />
+  <img src="https://img.shields.io/badge/WhatsApp-API-25D366?style=for-the-badge&logo=whatsapp" alt="WhatsApp API" />
+</p>
 
-## Architecture
+<p align="center">
+  A modular, microservices-based WhatsApp chatbot assistant built with Go, featuring OpenRouter for LLM integration and LangChain as the framework.
+</p>
+
+## 📋 Table of Contents
+
+- [Overview](#-overview)
+- [Architecture](#-architecture)
+- [Prerequisites](#-prerequisites)
+- [Configuration](#-configuration)
+- [Getting Started](#-getting-started)
+- [WhatsApp Integration](#-whatsapp-integration)
+- [API Endpoints](#-api-endpoints)
+- [Development](#-development)
+- [Project Structure](#-project-structure)
+- [Running Locally](#-running-locally)
+- [Contributing](#-contributing)
+
+## 🔍 Overview
+
+This WhatsApp chatbot assistant allows you to create an intelligent conversational interface powered by large language models. Users can interact with your bot through WhatsApp messages, and the system will generate responses using state-of-the-art AI models from OpenRouter.
+
+<p align="center">
+  <img src="https://mermaid.ink/img/pako:eNptkcFOAzEMRH8l8rlIJaQ9cUACiXJFQuJWOHhJtlmxm6qbqiiIf8dutn1hb_bM2DPSHjQZRR2UwxAbq4OCb-FN-a2qXwJNzI6LnUvx8GhssKXEV39r4iy0XLGmUZrwhyFEPG1X-_1-2e-7pZmdYrYVTvMx2-QKjMpWPYvBVvMG4mhNQovR-2QLNXJ9SclGVDGJyN5VGGvpADI9WgqgM12GZjhQz4UTH-eTQKnLaWMD936R2EE59jO9QMBTcj9KXvCiMO6GQk-DVETP0HI25oXk3fGOD-_UKf6eDOlfajmgrb6e3WqnPB1FjRRhyM84F83kNObMM1HNjGE4nGHKiuVZpGhCK2q8_6Ggkw" alt="Architecture Diagram" />
+</p>
+
+## 🏗 Architecture
 
 The system is composed of three main microservices:
 
@@ -12,15 +43,16 @@ The system is composed of three main microservices:
 
 Additionally, Redis is used for message passing between services.
 
-## Prerequisites
+## 📋 Prerequisites
 
 - Docker and Docker Compose
 - WhatsApp Business API credentials
 - OpenRouter API key
+- Go 1.21+ (for local development)
 
-## Configuration
+## ⚙️ Configuration
 
-All services are configured via environment variables, which can be set in the `docker-compose.yml` file:
+All services are configured via environment variables, which can be set in the `env.example` file:
 
 ### WhatsApp Configuration:
 - `WHATSAPP_TOKEN` - Your WhatsApp API token
@@ -35,7 +67,7 @@ All services are configured via environment variables, which can be set in the `
 - `REDIS_URL` - Redis URL (default: redis:6379)
 - `REDIS_PASSWORD` - Redis password (if needed)
 
-## Getting Started
+## 🚀 Getting Started
 
 1. Clone the repository:
    ```bash
@@ -43,42 +75,60 @@ All services are configured via environment variables, which can be set in the `
    cd whatsapp-chatbot
    ```
 
-2. Update the environment variables in the `docker-compose.yml` file with your credentials.
-
-3. Build and start the services:
+2. Copy the environment file:
    ```bash
-   docker-compose up --build
+   cp env.example .env
    ```
 
-4. The API Gateway will be available at http://localhost:8080
+3. Update the environment variables in the `.env` file with your credentials.
 
-## WhatsApp Integration
+4. Run the initialization script:
+   ```bash
+   ./init-services.sh
+   ```
+
+5. The API Gateway will be available at http://localhost:8080
+
+## 💬 WhatsApp Integration
 
 To integrate with WhatsApp, you need to:
 
 1. Configure a webhook URL in the WhatsApp Business API dashboard pointing to your API Gateway's `/webhook` endpoint.
 2. Set up the webhook verification token to match your `WHATSAPP_TOKEN` environment variable.
-3. Ensure your server is publicly accessible or use a tool like ngrok to expose your local server.
+3. Ensure your server is publicly accessible or use a tool like ngrok to expose your local server:
+   ```bash
+   ngrok http 8080
+   ```
 
-## API Endpoints
+## 🌐 API Endpoints
 
-### API Gateway
+<details>
+<summary><b>API Gateway</b></summary>
+
 - `GET /health` - Health check endpoint
 - `GET /webhook` - WhatsApp webhook verification
 - `POST /webhook` - WhatsApp message webhook
 - `POST /generate` - LLM message generation
+</details>
 
-### WhatsApp Service
+<details>
+<summary><b>WhatsApp Service</b></summary>
+
 - `GET /webhook` - WhatsApp webhook verification
 - `POST /webhook` - WhatsApp message webhook
+- `GET /health` - Health check endpoint
+</details>
 
-### LLM Service
+<details>
+<summary><b>LLM Service</b></summary>
+
 - `GET /health` - Health check endpoint
 - `POST /generate` - LLM message generation
+</details>
 
-## Development
+## 👨‍💻 Development
 
-### Project Structure
+### 📁 Project Structure
 ```
 ├── cmd/
 │   ├── api/         # API Gateway service
@@ -94,7 +144,7 @@ To integrate with WhatsApp, you need to:
 └── README.md
 ```
 
-### Running Locally
+### 🔧 Running Locally
 
 To run the services locally without Docker:
 
@@ -110,6 +160,16 @@ To run the services locally without Docker:
    go run cmd/llm/main.go
    ```
 
-## License
+## 🤝 Contributing
 
-MIT
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📜 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
