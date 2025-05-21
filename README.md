@@ -30,7 +30,7 @@
 This WhatsApp chatbot assistant allows you to create an intelligent conversational interface powered by large language models. Users can interact with your bot through WhatsApp messages, and the system will generate responses using state-of-the-art AI models from OpenRouter.
 
 <p align="center">
-  <img src="https://mermaid.ink/img/pako:eNptkcFOAzEMRH8l8rlIJaQ9cUACiXJFQuJWOHhJtlmxm6qbqiiIf8dutn1hb_bM2DPSHjQZRR2UwxAbq4OCb-FN-a2qXwJNzI6LnUvx8GhssKXEV39r4iy0XLGmUZrwhyFEPG1X-_1-2e-7pZmdYrYVTvMx2-QKjMpWPYvBVvMG4mhNQovR-2QLNXJ9SclGVDGJyN5VGGvpADI9WgqgM12GZjhQz4UTH-eTQKnLaWMD936R2EE59jO9QMBTcj9KXvCiMO6GQk-DVETP0HI25oXk3fGOD-_UKf6eDOlfajmgrb6e3WqnPB1FjRRhyM84F83kNObMM1HNjGE4nGHKiuVZpGhCK2q8_6Ggkw" alt="Architecture Diagram" />
+  <img src="https://kroki.io/plantuml/svg/eNp1kk9PwzAMxb_KKSfQNDSOXBBiEoyNgSbEaWi3OGqaJfnD1lbo0-88b1qLQObkl_c8_-wrZqFRJLWgiY6NIcUTY1wm4XazXuEhyvhx4PnkMGnojGQUHLQDR0rqmD7rIMp4qlitSHn-gQdvvT0tp4fDYVbvq1k59dzZLG4Hnx52xhtYKJv1KgfT9JVPnVHSYOct6UwNGLakpMUOe-uMh96YA8qPi8MfAM4dkK-6dJDXAYURzILwGD1H1tSIQA-eB2P9BXZQ0sMjjyTHDvFMv-Hfwb2DUyj9o_gIBhHtgPw4YFkOGBkO1sJeOo78-mCVPc_f3Cj3xfS_9dSFo9bynO5IkqVomTWCsqBF9YkTqz7ldUIFB8qVvCQfvNcTlrI80Yn9W6O9rBuphEG8Tnt7IfNiDEoY8jDp8T-5UMxvqWnlJahLUuRK9HlucGLBiIv60h0TcqcY-fYLRY8Xbw" alt="Architecture Diagram" />
 </p>
 
 ## 🏗 Architecture
